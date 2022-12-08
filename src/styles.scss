@@ -49,8 +49,7 @@ body {
     font-family: 'poppins';
 }
 .main {
-    margin-left: 140px; /* Same as the width of the sidenav */
-    margin-right: 20px; 
+    padding-left: 140px; /* Same as the width of the sidenav */
     width: auto;
     transition: .4s;
     transition-delay: .2s;
@@ -59,7 +58,7 @@ body {
 .sidebar {
     
     position: fixed;
-  z-index: 1;
+    z-index: 1;
     width: 120px;
     min-height: 100vh;
     backdrop-filter: blur(6px);
@@ -68,7 +67,7 @@ body {
     box-shadow: 0 1px 1px rgb(2, 4, 24);
     border-right: 2px solid rgba(255, 255, 255, .09);
     transition: .4s ease-in-out;
-    height: 100%;
+    height: auto;
 }
 
 .sidebar.open {
@@ -76,8 +75,13 @@ body {
     width: 360px;
 }
 .main.open {
-    margin-left: 380px; /* Same as the width of the sidenav */
-    margin-right: 20px; 
+    padding-left: 380px; /* Same as the width of the sidenav */
+    transition: .4s;
+    transition-delay: .2s;
+    width: auto;
+  }
+  .main.hide {
+    padding-left: 20px; /* Same as the width of the sidenav */
     transition: .4s;
     transition-delay: .2s;
     width: auto;
@@ -137,6 +141,7 @@ body {
 
 .sidebar nav {
     padding: 0 30px;
+    
 }
 
 .sidebar nav .nav-item {
