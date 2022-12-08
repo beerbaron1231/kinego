@@ -1,0 +1,7 @@
+::ng-deep.p-datatable .p-datatable-header {
+    background: #ffffff00 !important;
+    border:none
+  }
+  ::ng-deep.p-datatable .p-datatable-thead > tr > th{
+    border:none
+  }

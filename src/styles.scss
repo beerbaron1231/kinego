@@ -1,0 +1,229 @@
+// Variable overrides first
+$primary: #6749DD;
+
+$font-family-base: "Poppins";
+// Then import Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
+// Functions first
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+
+
+// Required Bootstrap imports
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+
+// Optional components
+@import "../node_modules/bootstrap/scss/utilities";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/helpers";
+@import "../node_modules/bootstrap/scss/utilities/api";
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    list-style: none;
+    box-sizing: border-box;
+     font-family: $font-family-base;
+}
+
+
+.flex-item{
+    flex-grow: 1;
+}
+
+.header {
+    
+    padding: 30px;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    background: linear-gradient(90deg, rgba(103, 73, 221, 0) 15.94%, #6749DD 100%);
+  }
+body {
+    height: auto;
+    font-family: 'poppins';
+}
+.main {
+    margin-left: 140px; /* Same as the width of the sidenav */
+    margin-right: 20px; 
+    width: auto;
+    transition: .4s;
+    transition-delay: .2s;
+  }
+
+.sidebar {
+    
+    position: fixed;
+  z-index: 1;
+    width: 120px;
+    min-height: 100vh;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    background: rgb(255, 255, 255);
+    box-shadow: 0 1px 1px rgb(2, 4, 24);
+    border-right: 2px solid rgba(255, 255, 255, .09);
+    transition: .4s ease-in-out;
+    height: 100%;
+}
+
+.sidebar.open {
+   
+    width: 360px;
+}
+.main.open {
+    margin-left: 380px; /* Same as the width of the sidenav */
+    margin-right: 20px; 
+    transition: .4s;
+    transition-delay: .2s;
+    width: auto;
+  }
+.sidebar .logo {
+    width: 100%;
+    height: 50px;
+    padding: 0px 0;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.sidebar .logo img {
+    width: 56px;
+    transition: .4s;
+}
+
+.sidebar.open .logo img {
+    width: 96px;
+    
+}
+.sidebar.open .logo {
+    transition-delay: .2s;
+    height: 152px;
+}
+
+.sidebar .logo h3 {
+    color: #fff;
+    font-size: 36px;
+    margin-top: 2px;
+    font-variant: small-caps;
+    pointer-events: none;
+    scale: 0;
+    opacity: 0;
+}
+
+.sidebar.open .logo h3 {
+    scale: 1;
+    opacity: 1;
+    transition: .4s;
+    transition-delay: .2s;
+}
+
+.sidebar .nav-title {
+    color: #dadada;
+    margin: 0px 0 0px;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.sidebar.open .nav-title {
+    opacity: 1;
+    transition: .4s;
+    transition-delay: .2s;
+}
+
+.sidebar nav {
+    padding: 0 30px;
+}
+
+.sidebar nav .nav-item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 4px;
+    width: 100%;
+    height: 50px;
+    padding: 0 16px;
+    margin: 8px 0;
+    color: #6749DD;
+    transition: .3s;
+}
+
+.sidebar nav .nav-item.active {
+    background: #6749DD !important;
+    color: #fff;
+}
+.sidebar nav .nav-item:hover {
+    background: #6749DD !important;
+    color: #fff;
+}
+.sidebar nav .nav-item:hover {
+    background: rgba(255, 255, 255, 0);
+}
+
+.sidebar nav .nav-item i {
+    font-size: 26px;
+}
+
+.sidebar nav .nav-item span {
+    font-size: 18px;
+    margin-left: 8px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar.open nav .nav-item span {
+    opacity: 1;
+    pointer-events: visible;
+    transition: .4s;
+    transition-delay: .2s;
+}
+
+
+
+.sidebar.open hr {
+    opacity: 1;
+    transition: .4s;
+}
+
+.sidebar .toggle {
+    cursor: pointer;
+    position: absolute;
+    color: #fff;
+    top: 100px;
+    right: -20px;
+    font-size: 38px;
+    line-height: 50%;
+    text-align: center;
+    border-radius: 50%;
+    padding: 2px 0 2px 2px;
+    background: linear-gradient(
+        90deg,
+        transparent 50%,
+        rgb(255, 255, 255) 50%
+    );
+    color: #6749DD;
+}
+
+.sidebar.open .toggle {
+    transform: translateY(45px);
+}
+
+.sidebar .toggle i {
+    transition: .4s linear;
+}
+
+.sidebar.open .toggle i {
+    transform: rotateY(180deg);
+}
+.p-component {
+  
+    border-radius: 14px !important;
+}
+ol, ul {
+    padding-left: 0rem;
+}
