@@ -1,4 +1,5 @@
 import { Component, Output,EventEmitter } from '@angular/core';
+import {MenuItem} from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,41 @@ import { Component, Output,EventEmitter } from '@angular/core';
 })
 export class AppComponent {
   
+
+  selectedCity: any;
+  items: MenuItem[];
+  constructor() {
+    this.items = [{
+      label: 'Options',
+      items: [{
+          label: 'Update',
+          icon: 'bi bi-arrow-clockwise',
+          command: () => {
+            
+          }
+      },
+      {
+          label: 'Delete',
+          icon: 'bi bi-x ',
+          command: () => {
+             
+          }
+      }
+      ]},
+      {
+          label: 'Navigate',
+          items: [{
+              label: 'Angular Website',
+              icon: 'bi bi-box-arrow-up-right',
+              url: 'http://angular.io'
+          },
+          {
+              label: 'Router',
+              icon: 'bi bi-upload'
+          }
+      ]}
+  ];
+  }
   title = 'Angular15';
   latoggle:boolean=false
   visibleside:boolean=true

@@ -1,16 +1,4 @@
-<!-- 
-<div class=" " >
-  <div class="fixed" style="height: 100%"><app-sidebar></app-sidebar></div>
-  <div class="flex-item" style="border-style: dashed;">
-    <div class="header ">
-      <div class=""></div>
-    </div>
-  <div class="main container-fluid">
-   <div class="" style="margin-top:30px ;">
-    <router-outlet ></router-outlet>
-   </div>
-  </div></div>
-</div> -->
+
 
 <app-sidebar
   (toggleSideBarFroMe)="sideBarToogle()"
@@ -38,8 +26,13 @@
           [ngClass]="{ toggle: !visibleside }"
         ></i>
       </div>
-      <div class=" col-auto">
-        <i class="bi bi-person-circle" style="color: white"></i>
+      <div class="col-auto">
+        <i
+          class="bi bi-person-circle"
+          style="color: white"
+          (click)="menu.toggle($event)"
+        ></i>
+        <p-menu #menu [popup]="true" [model]="items"></p-menu>
       </div>
     </div>
   </div>

@@ -1,0 +1,17 @@
+<p-card header="Top Ventas" [style]="{'height': '35rem', 'margin-bottom': '2em'}">
+    
+   <div class="row align-middle" *ngFor="let item of list">
+    <div class="col-2 align-middle">
+        <i class="bi bi-person-circle" style="font-size: 60px;color: #6749DD ;"></i>
+    </div>
+    <div class="col-6">
+        <div class="row align-middle">
+            <div class="col-12">{{item.name}}</div>
+            <div class="col-12">N° Suscriptores: {{item.suscriptores}}</div>
+        </div>
+    </div>
+    <div class="col-4 align-middle">
+        <b>Codigo: {{item.code}}</b>
+    </div>
+   </div>
+</p-card>
