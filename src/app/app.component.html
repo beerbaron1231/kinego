@@ -12,12 +12,38 @@
   </div></div>
 </div> -->
 
-
-  <app-sidebar (toggleSideBarFroMe)="sideBarToogle()" *ngIf="visibleside"></app-sidebar>
-  <div class="main" [ngClass]="{ open: latoggle, '': !latoggle, hide:!visibleside }">
-    <div class="header" style="text-align:left;"><i class="bi bi-list" style="color: #6749DD;" (click)="hiddenside()"></i> </div>
-    <div class="container-fluid">
-      <router-outlet class="container"></router-outlet>
+<app-sidebar
+  (toggleSideBarFroMe)="sideBarToogle()"
+  *ngIf="visibleside"
+></app-sidebar>
+<div
+  class="main"
+  [ngClass]="{ open: latoggle, '': !latoggle, hide: !visibleside }"
+>
+  <div class="header">
+    <div class="row">
+      <div class="col-auto me-auto">
+        <i
+          class="bi bi-x-lg"
+          *ngIf="visibleside"
+          style="color: #6749dd"
+          (click)="hiddenside()"
+          [ngClass]="{ toggle: !visibleside }"
+        ></i>
+        <i
+          class="bi bi-list"
+          *ngIf="!visibleside"
+          style="color: #6749dd"
+          (click)="hiddenside()"
+          [ngClass]="{ toggle: !visibleside }"
+        ></i>
+      </div>
+      <div class=" col-auto">
+        <i class="bi bi-person-circle" style="color: white"></i>
+      </div>
     </div>
   </div>
-
+  <div class="container-fluid">
+    <router-outlet class="container"></router-outlet>
+  </div>
+</div>

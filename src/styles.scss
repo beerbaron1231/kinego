@@ -38,7 +38,7 @@ $font-family-base: "Poppins";
 
 .header {
     
-    padding: 30px;
+    padding: 20px;
     text-align: center;
     color: white;
     font-size: 30px;
@@ -221,7 +221,9 @@ body {
 .sidebar .toggle i {
     transition: .4s linear;
 }
-
+.toggle {
+    transition: .4s linear;
+}
 .sidebar.open .toggle i {
     transform: rotateY(180deg);
 }
