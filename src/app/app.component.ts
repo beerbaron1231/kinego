@@ -50,6 +50,7 @@ export class AppComponent {
     this.latoggle =!this.latoggle
     console.log(this.latoggle)
   }
+ 
   hiddenside(){
     this.visibleside=!this.visibleside
     this.latoggle=false
