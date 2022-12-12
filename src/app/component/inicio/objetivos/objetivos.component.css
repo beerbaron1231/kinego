@@ -1,0 +1,4 @@
+::ng-deep.highcharts-container{
+    width: 95% !important;
+    height: 400px;
+}
