@@ -38,7 +38,9 @@ $font-family-base: "Poppins";
 
 .header {
     
-    padding: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
     text-align: center;
     color: white;
     font-size: 30px;
@@ -47,12 +49,14 @@ $font-family-base: "Poppins";
 body {
     height: auto;
     font-family: 'poppins';
+    
 }
 .main {
-    padding-left: 140px; /* Same as the width of the sidenav */
    
+    padding-left:140px; /* Same as the width of the sidenav */
     transition: .4s;
     transition-delay: .2s;
+   
   }
 
 .sidebar {
@@ -60,14 +64,14 @@ body {
     position: fixed;
     z-index: 1;
     width: 120px;
-    min-height: 100vh;
+    min-height: 100%;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     background: rgb(255, 255, 255);
     box-shadow: 0 1px 1px rgb(2, 4, 24);
     border-right: 2px solid rgba(255, 255, 255, .09);
     transition: .4s ease-in-out;
-    height: auto;
+   
 }
 
 .sidebar.open {
@@ -78,13 +82,13 @@ body {
     padding-left: 380px; /* Same as the width of the sidenav */
     transition: .4s;
     transition-delay: .2s;
-    width: auto;
+    
   }
   .main.hide {
     padding-left: 20px; /* Same as the width of the sidenav */
     transition: .4s;
     transition-delay: .2s;
-    width: auto;
+    
   }
 .sidebar .logo {
     width: 100%;
