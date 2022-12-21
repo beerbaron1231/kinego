@@ -5,13 +5,16 @@ import { CardModule } from 'primeng/card';
 import { AppRoutingModule, MyGuardWithDependency } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './ui/sidebar/sidebar.component';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuModule } from 'primeng/menu';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './component/login/login.component';
+import { AuthServiceService } from './services/auth-service.service';
 
 @NgModule({
   declarations: [
-    AppComponent,SidebarComponent
+    AppComponent,SidebarComponent, LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -19,9 +22,11 @@ import { MenuModule } from 'primeng/menu';
     AppRoutingModule,
     CardModule,
     FormsModule,
-    MenuModule
+    MenuModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [MyGuardWithDependency],
+  providers: [MyGuardWithDependency, AuthServiceService, ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

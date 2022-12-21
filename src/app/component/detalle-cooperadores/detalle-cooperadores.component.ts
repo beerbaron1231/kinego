@@ -7,14 +7,16 @@ import {DialogModule} from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import {CalendarModule} from 'primeng/calendar';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {InputMaskModule} from 'primeng/inputmask';
 import {RadioButtonModule} from 'primeng/radiobutton';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import { DropdownModule } from 'primeng/dropdown';
 @Component({
   selector: 'app-detalle-cooperadores',
   standalone: true,
-  imports: [CommonModule, FormsModule,PanelModule, TableModule, CardModule,DialogModule,  ButtonModule,InputTextModule,CalendarModule,InputNumberModule,InputMaskModule,RadioButtonModule],
+  imports: [ CommonModule, FormsModule,ReactiveFormsModule,PanelModule, TableModule, CardModule,DialogModule,  ButtonModule,InputTextModule,CalendarModule,InputNumberModule,InputMaskModule,RadioButtonModule,InputSwitchModule,DropdownModule],
   templateUrl: './detalle-cooperadores.component.html',
   styleUrls: ['./detalle-cooperadores.component.css']
 })
@@ -24,36 +26,56 @@ export class DetalleCooperadoresComponent {
   value:any
   val:any
   val2:string=''
-  selectedValue: string='';
+  selectedValue1: boolean=false
+  selectedValue2:  boolean=false
+  nombreformingreso:string=''
+  formulario = this.fb.group({
+    name: new FormControl('',[Validators.required]),
+    rut: new FormControl('',[Validators.required]),
+    email: new FormControl('',[Validators.required]),
+    val: new FormControl('',[Validators.required]),
+    val2: new FormControl('',[Validators.required]),
+    selectedValue1: new FormControl(false, [Validators.required]),
+    selectedValue2: new FormControl(false, [Validators.required]),})
+  constructor(
+    private fb: FormBuilder
+  ){
+
+  }
   cooperadores:any[]=[
     {
       name:'Nombre Apellido',
+      rut:'123456789-k',
       lista:[
         {
-          Nombre:'Felipe Gordillo',
-          Correo:'gordillo.felipe@gmail.com',
+          name:'Felipe Gordillo',
+          email:'gordillo.felipe@gmail.com',
+          rut:'123456789-k',
           Edad:40,
           ProgramaSuscrito:'Content',
           Monto:2000,
           Estado:'Activo',
         },
         {
-          Nombre:'Felipe Gordillo',
-          Correo:'gordillo.felipe@gmail.com',
-          Edad:40,
-          ProgramaSuscrito:'Content',
-          Monto:500,
-          Estado:'Activo',
-        },{
-          Nombre:'Felipe Gordillo',
-          Correo:'gordillo.felipe@gmail.com',
+          name:'Felipe Gordillo',
+          email:'gordillo.felipe@gmail.com',
+          rut:'123456789-k',
           Edad:40,
           ProgramaSuscrito:'Content',
           Monto:2000,
           Estado:'Activo',
         },{
-          Nombre:'Felipe Gordillo',
-          Correo:'gordillo.felipe@gmail.com',
+          name:'Felipe Gordillo',
+          email:'gordillo.felipe@gmail.com',
+          rut:'123456789-k',
+          Edad:40,
+          ProgramaSuscrito:'Content',
+          Monto:2000,
+          Estado:'Activo',
+        },{
+          name:'Felipe Gordillo',
+          email:'gordillo.felipe@gmail.com',
+          rut:'123456789-k',
           Edad:40,
           ProgramaSuscrito:'Content',
           Monto:2000,
@@ -63,71 +85,173 @@ export class DetalleCooperadoresComponent {
     },
     {
       name:'Nombre Apellido',
+      rut:'123456789-k',
       lista:[
         {
-          Nombre:'Felipe Gordillo',
-          Correo:'gordillo.felipe@gmail.com',
+          name:'Felipe Gordillo',
+          email:'gordillo.felipe@gmail.com',
+          rut:'123456789-k',
           Edad:40,
           ProgramaSuscrito:'Content',
           Monto:2000,
           Estado:'Activo',
         },
         {
-          Nombre:'Felipe Gordillo',
-          Correo:'gordillo.felipe@gmail.com',
-          Edad:40,
-          ProgramaSuscrito:'Content',
-          Monto:500,
-          Estado:'Activo',
-        }
-      ]
-    },
-    {
-      name:'Nombre Apellido',
-      lista:[
-        {
-          Nombre:'Felipe Gordillo',
-          Correo:'gordillo.felipe@gmail.com',
+          name:'Felipe Gordillo',
+          email:'gordillo.felipe@gmail.com',
+          rut:'123456789-k',
           Edad:40,
           ProgramaSuscrito:'Content',
           Monto:2000,
           Estado:'Activo',
-        }
+        },{
+          name:'Felipe Gordillo',
+          email:'gordillo.felipe@gmail.com',
+          rut:'123456789-k',
+          Edad:40,
+          ProgramaSuscrito:'Content',
+          Monto:2000,
+          Estado:'Activo',
+        },{
+          name:'Felipe Gordillo',
+          email:'gordillo.felipe@gmail.com',
+          rut:'123456789-k',
+          Edad:40,
+          ProgramaSuscrito:'Content',
+          Monto:2000,
+          Estado:'Activo',
+        },
       ]
-    }
+    }, {
+      name:'Nombre Apellido',
+      rut:'123456789-k',
+      lista:[
+        {
+          name:'Felipe Gordillo',
+          email:'gordillo.felipe@gmail.com',
+          rut:'123456789-k',
+          Edad:40,
+          ProgramaSuscrito:'Content',
+          Monto:2000,
+          Estado:'Activo',
+        },
+        {
+          name:'Felipe Gordillo',
+          email:'gordillo.felipe@gmail.com',
+          rut:'123456789-k',
+          Edad:40,
+          ProgramaSuscrito:'Content',
+          Monto:2000,
+          Estado:'Activo',
+        },{
+          name:'Felipe Gordillo',
+          email:'gordillo.felipe@gmail.com',
+          rut:'123456789-k',
+          Edad:40,
+          ProgramaSuscrito:'Content',
+          Monto:2000,
+          Estado:'Activo',
+        },{
+          name:'Felipe Gordillo',
+          email:'gordillo.felipe@gmail.com',
+          rut:'123456789-k',
+          Edad:40,
+          ProgramaSuscrito:'Content',
+          Monto:2000,
+          Estado:'Activo',
+        },
+      ]
+    }, {
+      name:'Nombre Apellido',
+      rut:'123456789-k',
+      lista:[
+        {
+          name:'Felipe Gordillo',
+          email:'gordillo.felipe@gmail.com',
+          rut:'123456789-k',
+          Edad:40,
+          ProgramaSuscrito:'Content',
+          Monto:2000,
+          Estado:'Activo',
+        },
+        {
+          name:'Felipe Gordillo',
+          email:'gordillo.felipe@gmail.com',
+          rut:'123456789-k',
+          Edad:40,
+          ProgramaSuscrito:'Content',
+          Monto:2000,
+          Estado:'Activo',
+        },{
+          name:'Felipe Gordillo',
+          email:'gordillo.felipe@gmail.com',
+          rut:'123456789-k',
+          Edad:40,
+          ProgramaSuscrito:'Content',
+          Monto:2000,
+          Estado:'Activo',
+        },{
+          name:'Felipe Gordillo',
+          email:'gordillo.felipe@gmail.com',
+          rut:'123456789-k',
+          Edad:40,
+          ProgramaSuscrito:'Content',
+          Monto:2000,
+          Estado:'Activo',
+        },
+      ]
+    },
   ]
   list:any[]=[
     {
-      Nombre:'Felipe Gordillo',
-      Correo:'gordillo.felipe@gmail.com',
+      name:'Felipe Gordillo',
+      rut:'12345678-9',
+      mail:'gordillo.felipe@gmail.com',
       Edad:40,
       ProgramaSuscrito:'Content',
       Monto:2000,
       Estado:'Activo',
     },
     {
-      Nombre:'Felipe Gordillo',
-      Correo:'gordillo.felipe@gmail.com',
-      Edad:40,
-      ProgramaSuscrito:'Content',
-      Monto:500,
-      Estado:'Activo',
-    },{
-      Nombre:'Felipe Gordillo',
-      Correo:'gordillo.felipe@gmail.com',
+      name:'Felipe Gordillo',
+      rut:'12345678-9',
+      mail:'gordillo.felipe@gmail.com',
       Edad:40,
       ProgramaSuscrito:'Content',
       Monto:2000,
       Estado:'Activo',
-    },{
-      Nombre:'Felipe Gordillo',
-      Correo:'gordillo.felipe@gmail.com',
+    }, {
+      name:'Felipe Gordillo',
+      rut:'12345678-9',
+      mail:'gordillo.felipe@gmail.com',
+      Edad:40,
+      ProgramaSuscrito:'Content',
+      Monto:2000,
+      Estado:'Activo',
+    }, {
+      name:'Felipe Gordillo',
+      rut:'12345678-9',
+      mail:'gordillo.felipe@gmail.com',
       Edad:40,
       ProgramaSuscrito:'Content',
       Monto:2000,
       Estado:'Activo',
     },
   ]
+  programas:any=[
+    {
+    name:'Lumbar',
+    id:1
+  },
+  {
+    name:'Rodillas',
+    id:2
+  }
+  , {
+    name:'Otros',
+    id:3
+  }
+]
   exportExcel() {
     import('xlsx').then((xlsx) => {
       const worksheet = xlsx.utils.json_to_sheet(this.list); // Sale Data
@@ -154,8 +278,30 @@ export class DetalleCooperadoresComponent {
       window.saveAs(data, fileName + EXCEL_EXTENSION);
     });
   }
-  showDialog() {
+  showDialog() { //formulario de ingreso de cooperador
+    this.formulario.reset()
+    this.nombreformingreso="Ingreso Nuevo Cooperador"
+
     this.display = true;
+}
+showDialogedit(datosusuario:any) {//formulario edicion de cooperador
+  this.nombreformingreso="Editar Cooperador"
+  this.formulario.controls['name'].setValue(datosusuario.name)
+  this.formulario.controls['rut'].setValue(datosusuario.rut)
+  this.display = true;
+}
+showDialogDerivador(){//formulario ingreso de derivador
+this.formulario.reset()
+  this.nombreformingreso="Ingresar Derivador"
+
+  this.display = true;
+}
+showDialogDerivadoredit(datosusuario:any) {//formulario edicion de derivador
+
+  this.nombreformingreso="Editar Derivador"
+  this.formulario.controls['name'].setValue(datosusuario.name)
+  this.formulario.controls['rut'].setValue(datosusuario.rut)
+  this.display = true;
 }
 guardarusuario(){
   alert('adasd')

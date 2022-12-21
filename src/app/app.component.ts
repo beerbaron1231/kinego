@@ -1,5 +1,7 @@
 import { Component, Output,EventEmitter } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {MenuItem} from 'primeng/api';
+import { AuthServiceService } from './services/auth-service.service';
 
 @Component({
   selector: 'app-root',
@@ -11,36 +13,38 @@ export class AppComponent {
 
   selectedCity: any;
   items: MenuItem[];
-  constructor() {
+  constructor(public _au:AuthServiceService) {
     this.items = [{
-      label: 'Options',
+      label: 'Prueba',
       items: [{
-          label: 'Update',
+          label: 'Inicio',
           icon: 'bi bi-arrow-clockwise',
+          routerLink: '/inicio',
           command: () => {
             
           }
       },
       {
-          label: 'Delete',
-          icon: 'bi bi-x ',
+          label: 'Log Out',
+          icon: 'bi bi-door-closed ',
+          routerLink: '/login',
           command: () => {
-             
+           // this._au.logout()
           }
       }
       ]},
-      {
-          label: 'Navigate',
-          items: [{
-              label: 'Angular Website',
-              icon: 'bi bi-box-arrow-up-right',
-              url: 'http://angular.io'
-          },
-          {
-              label: 'Router',
-              icon: 'bi bi-upload'
-          }
-      ]}
+      // {
+      //     label: 'Navigate',
+      //     items: [{
+      //         label: 'Angular Website',
+      //         icon: 'bi bi-box-arrow-up-right',
+      //         url: 'http://angular.io'
+      //     },
+      //     {
+      //         label: 'Router',
+      //         icon: 'bi bi-upload'
+      //     }
+      // ]}
   ];
   }
   title = 'Angular15';

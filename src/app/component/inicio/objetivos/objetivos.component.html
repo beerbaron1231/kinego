@@ -1,11 +1,9 @@
 <p-card header="Objetivos" [style]="{'height': '35rem', 'margin-bottom': '2em'}">
    <highcharts-chart 
    [Highcharts]="Highcharts"
-   [constructorType]="chartConstructor"
+ 
    [options]="chartOptions"
-   [(update)]="updateFlag"
-   [oneToOne]="oneToOneFlag"
-   [runOutsideAngular]="runOutsideAngularFlag"
-   style="width: 90% !important; height: 400px !important; "
- ></highcharts-chart>
+  
+  
+   style = "overflow: visible;"></highcharts-chart>
 </p-card>

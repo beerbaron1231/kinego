@@ -13,7 +13,7 @@
   <br />
   <p-panel
     [toggleable]="true"
-    *ngFor="let item of cooperadores"
+    *ngFor="let datosusuario of cooperadores"
     [transitionOptions]="'1ms'"
     [collapsed]="true"
   >
@@ -27,12 +27,13 @@
         </div>
         <div class="col-md-8">
           <div class="row align-middle">
-            <div class="col-md-3"><b>Nombre Apellido</b></div>
-            <div class="col-md-7">Rol/Ocupacion</div>
-            <div class="col-md-1">
+            <div class="col-md-5"><b> {{datosusuario.name}} </b> </div>
+            <div class="col-md-5">Rol/Ocupacion</div>
+            <div class="col-md-2">
               <i
                 class="bi bi-pencil-square"
                 style="font-size: 16px; color: #6749dd"
+                (click)="showDialogedit(datosusuario)"
               ></i>
             </div>
           </div>
@@ -49,7 +50,7 @@
       </div>
     </ng-template>
     <p-table
-      [value]="item.lista"
+      [value]="datosusuario.lista"
       [tableStyle]="{ 'min-width': '50rem' }"
       styleClass="p-datatable-striped p-datatable-sm"
       [paginator]="true"
@@ -57,16 +58,17 @@
     >
       <ng-template pTemplate="caption">
         <div class="row">
-          <div class="col-md-2">Ventas Cooperadores</div>
+          <div class="col-md-2">Ventas Derivadores</div>
           <div
             class="col-md-10 col-sm-12 d-flex justify-content-end align-items-center"
           >
-            <!-- <button class="btn btn-primary" (click)="exportExcel()" >Descargar Excel</button> -->
+            <button class="btn btn-primary" (click)="showDialogDerivador()" >Agregar Derivador</button>
           </div>
         </div>
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
+          <th>Editar</th>
           <th pSortableColumn="suscriptor">
             Nombre<p-sortIcon field="suscriptor"></p-sortIcon>
           </th>
@@ -89,8 +91,13 @@
       </ng-template>
       <ng-template pTemplate="body" let-product>
         <tr>
-          <td>{{ product.Nombre }}</td>
-          <td>{{ product.Correo }}</td>
+          <td> <i
+            class="bi bi-pencil-square"
+            style="font-size: 16px; color: #6749dd"
+            (click)="showDialogDerivadoredit(product)"
+          ></i></td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.email }}</td>
           <td>{{ product.Edad }}</td>
           <td>{{ product.ProgramaSuscrito }}</td>
           <td>{{ product.Monto }}</td>
@@ -104,10 +111,11 @@
 
 <p-dialog
   [(visible)]="display"
-  header="Ingreso Nuevo Operador"
+  [header]="nombreformingreso"
   [style]="{ width: '50vw' }"
   [closable]="true"
 >
+ <form action="" [formGroup]="formulario">
   <div class="container">
     <br />
     <!-- <form action=""> -->
@@ -119,6 +127,7 @@
               type="text"
               pInputText
               class="form-control"
+              formControlName="name"
             />
             <label for="float-input">Nombre Cooperador</label>
           </span>
@@ -130,6 +139,7 @@
               type="text"
               pInputText
               class="form-control"
+              formControlName="rut"
             />
             <label for="float-input">Ingrese el Rut</label>
           </span>
@@ -144,14 +154,15 @@
               type="text"
               pInputText
               class="form-control"
+              formControlName="email"
             />
             <label for="float-input">Correo Electrónico</label>
           </span>
         </div>
         <div class="col-6">
           <span class="p-float-label">
-            <p-inputMask inputId="inputmask" mask="9999_9999" [(ngModel)]="val2"></p-inputMask>
-            <label for="inputmask">Programa suscrito</label>
+            <p-dropdown inputId="dropdown" [autoDisplayFirst]="false" [options]="programas" formControlName="val2" optionLabel="name" [style]="{width : '100%'}" optionValue="id" ></p-dropdown>
+            <label for="dropdown">Programa suscrito</label>
         </span>
         </div>
       </div>
@@ -159,54 +170,55 @@
       <div class="row">
         <div class="col-6">
           <span class="p-float-label">
-            <p-calendar inputId="calendar" [(ngModel)]="value" appendTo="body"></p-calendar>
+            <p-calendar inputId="calendar" appendTo="body"  formControlName="val2"></p-calendar>
             <label for="calendar">Fecha Nacimiento</label>
         </span>
         </div>
         <div class="col-6">
           <span class="p-float-label">
-            <p-inputNumber [(ngModel)]="val" inputStyleClass="form-control" [max]="100" [min]="0" inputId="float-input"></p-inputNumber>
+            <p-inputNumber  inputStyleClass="form-control" [max]="100" [min]="0" inputId="float-input" prefix="%"  formControlName="val2"></p-inputNumber>
             <label for="float-input">Descuento</label>
           </span>
         </div>
       </div>
       <br>
       <div class="row">
-        <div class="col-12"> <p-radioButton name="groupname" value="val1" [(ngModel)]="selectedValue"></p-radioButton> Kinesiólogo</div>
-        <div class="col-12"><p-radioButton name="groupname" value="val2" [(ngModel)]="selectedValue"></p-radioButton> Hacer Cooperador</div>
+        <div class="col-12"> <p-inputSwitch   formControlName="selectedValue1"></p-inputSwitch> Kinesiólogo</div>
+        <div class="col-12"><p-inputSwitch   formControlName="selectedValue2"></p-inputSwitch> Hacer Cooperador</div>
       </div>
       <br>
-      <div class="row" *ngIf="selectedValue=='val2'">
+      <div class="row" *ngIf="selectedValue2">
         <div class="col-6">
           <span class="p-float-label">
-            <input type="text" id="inputtext" class="form-control" pInputText [(ngModel)]="val" pInputText > 
+            <input type="text" id="inputtext" class="form-control" pInputText  formControlName="val" pInputText >
             <label for="inputtext">Rol</label>
         </span>
         </div>
         <div class="col-6">
           <span class="p-float-label">
-            <input type="text" id="inputtext" class="form-control" pInputText [(ngModel)]="val" pInputText > 
+            <input type="text" id="inputtext" class="form-control" pInputText  formControlName="val2" pInputText >
             <label for="inputtext">Empresa</label>
         </span>
         </div>
       </div>
       <br>
-      <div class="row" *ngIf="selectedValue=='val2'">
+      <div class="row" *ngIf="selectedValue2">
         <div class="col-6">
           <span class="p-float-label">
-            <input type="text" id="inputtext" class="form-control" pInputText [(ngModel)]="val" pInputText > 
+            <input type="text" id="inputtext" class="form-control" pInputText  formControlName="val2" pInputText prefix="%" >
             <label for="inputtext">Descuento</label>
         </span>
         </div>
         <div class="col-6">
           <span class="p-float-label">
-            <input type="text" id="inputtext" class="form-control" pInputText [(ngModel)]="val" pInputText > 
+            <input type="text" id="inputtext" class="form-control" pInputText  formControlName="val2" pInputText >
             <label for="inputtext">Código Cooperador</label>
         </span>
         </div>
       </div>
     <!-- </form> -->
   </div>
+ </form>
   <ng-template pTemplate="footer">
     <div class="row ">
       <div class="mx-auto" style="width: 200px;">
@@ -214,8 +226,8 @@
           <i class="bi bi-save"></i> Guardar
         </button>
       </div>
-      
+
     </div>
-    
+
   </ng-template>
 </p-dialog>

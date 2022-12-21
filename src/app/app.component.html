@@ -2,13 +2,13 @@
 
 <app-sidebar
   (toggleSideBarFroMe)="sideBarToogle()"
-  *ngIf="visibleside"
+  *ngIf="visibleside "
 ></app-sidebar>
 <div
   class="main"
-  [ngClass]="{ open: latoggle, '': !latoggle, hide: !visibleside }"
+  [ngClass]="{ open: latoggle, '': !latoggle, hide: !visibleside }"  
 >
-  <div class="header">
+  <div class="header" >
     <div class="row">
       <div class="col-auto me-auto">
         <i

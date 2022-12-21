@@ -250,3 +250,13 @@ p-inputnumber, .p-inputnumber {
 .p-inputtext.p-component.p-element.p-inputmask {
     width: 100%;
 }
+
+
+.test::-webkit-scrollbar {
+	width: 7px;
+}
+
+.test::-webkit-scrollbar-thumb {
+	background: #6749DD;
+}
+

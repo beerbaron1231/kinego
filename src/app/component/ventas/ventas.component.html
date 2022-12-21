@@ -4,20 +4,18 @@
     <p-table
     [value]="lista"
     [tableStyle]="{ 'min-width': '50rem' }"
-    styleClass="p-datatable-striped p-datatable-sm" 
+    styleClass="p-datatable-striped p-datatable-sm"
     [paginator]="true"
-    [rows]="10" 
+    [rows]="10"
     >
     <ng-template pTemplate="caption">
       <div class="row">
         <div class="row">
-          <div class="col-md-2"></div>
+          <div class="col-md-3">Ventas Totales Registradas</div>
           <div
-            class="col-md-10 col-sm-12 d-flex justify-content-end align-items-center"
+            class="col-md-9 col-sm-12 d-flex justify-content-end align-items-center"
           >
-            <button class="btn btn-primary" (click)="exportExcel()" > <span class="d-none d-sm-block"> Descargar Excel</span>
-              <i class="bi bi-file-earmark-spreadsheet d-xs-none d-lg-none d-md-none d-sm-none"></i>
-           </button>
+            <button class="btn btn-primary" (click)="exportExcel()" >Descargar Excel</button>
           </div>
         </div>
       </div>
@@ -51,5 +49,6 @@
       </tr>
     </ng-template>
     </p-table>
+
    </p-card>
 </div>
