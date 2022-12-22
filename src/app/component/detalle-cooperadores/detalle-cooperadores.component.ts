@@ -13,10 +13,13 @@ import {InputMaskModule} from 'primeng/inputmask';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import { DropdownModule } from 'primeng/dropdown';
+
+import { MessageModule } from 'primeng/message';
+import Validation from 'src/app/services/validadorrut';
 @Component({
   selector: 'app-detalle-cooperadores',
   standalone: true,
-  imports: [ CommonModule, FormsModule,ReactiveFormsModule,PanelModule, TableModule, CardModule,DialogModule,  ButtonModule,InputTextModule,CalendarModule,InputNumberModule,InputMaskModule,RadioButtonModule,InputSwitchModule,DropdownModule],
+  imports: [ CommonModule, FormsModule,ReactiveFormsModule,PanelModule, TableModule, CardModule,DialogModule,  ButtonModule,InputTextModule,CalendarModule,InputNumberModule,InputMaskModule,RadioButtonModule,InputSwitchModule,DropdownModule,MessageModule],
   templateUrl: './detalle-cooperadores.component.html',
   styleUrls: ['./detalle-cooperadores.component.css']
 })
@@ -30,13 +33,19 @@ export class DetalleCooperadoresComponent {
   selectedValue2:  boolean=false
   nombreformingreso:string=''
   formulario = this.fb.group({
-    name: new FormControl('',[Validators.required]),
-    rut: new FormControl('',[Validators.required]),
-    email: new FormControl('',[Validators.required]),
-    val: new FormControl('',[Validators.required]),
-    val2: new FormControl('',[Validators.required]),
-    selectedValue1: new FormControl(false, [Validators.required]),
-    selectedValue2: new FormControl(false, [Validators.required]),})
+    name: new FormControl('', [Validators.required]),
+    rut: new FormControl('', [Validators.required, Validation.valrut('RUT')]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    programa: new FormControl('', [Validators.required]),
+    fechanacimiento: new FormControl('', [Validators.required]),
+    descuento: new FormControl(false, [Validators.required]),
+    kine: new FormControl(false),
+    Cooperador: new FormControl(false),
+    rol: new FormControl(''),
+    empresa: new FormControl(''),
+    descuento2: new FormControl(''),
+    codigocooperador: new FormControl(''),
+  });
   constructor(
     private fb: FormBuilder
   ){
@@ -305,5 +314,37 @@ showDialogDerivadoredit(datosusuario:any) {//formulario edicion de derivador
 }
 guardarusuario(){
   alert('adasd')
+}
+cambioestado() {
+  if (this.formulario.controls['Cooperador'].value) {
+    this.formulario.controls['rol'].setValidators([Validators.required]);
+    this.formulario.controls['empresa'].setValidators([Validators.required]);
+    this.formulario.controls['descuento2'].setValidators([
+      Validators.required,
+    ]);
+    this.formulario.controls['codigocooperador'].setValidators([
+      Validators.required,
+    ]);
+  } else {
+    this.formulario.controls['rol'].removeValidators([Validators.required]);
+    this.formulario.controls['empresa'].removeValidators([
+      Validators.required,
+    ]);
+    this.formulario.controls['descuento2'].removeValidators([
+      Validators.required,
+    ]);
+    this.formulario.controls['codigocooperador'].removeValidators([
+      Validators.required,
+    ]);
+    this.formulario.controls['rol'].setValue(null)
+    this.formulario.controls['empresa'].setValue(null)
+    this.formulario.controls['descuento2'].setValue(null)
+    this.formulario.controls['codigocooperador'].setValue(null)
+  }
+
+  this.formulario.controls['rol'].updateValueAndValidity;
+  this.formulario.controls['empresa'].updateValueAndValidity;
+  this.formulario.controls['descuento2'].updateValueAndValidity;
+  this.formulario.controls['codigocooperador'].updateValueAndValidity;
 }
 }

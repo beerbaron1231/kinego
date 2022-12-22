@@ -1,60 +1,76 @@
 <h3>Usuarios</h3>
 
 <div class="container">
-    <div class="row">
-        <div
-          class="col-md-12 col-sm-12 d-flex justify-content-end align-items-center"
-        >
-          <button class="btn btn-primary" (click)="showDialog()">
-            Agregar Nuevo Usuarios
-          </button>
-        </div>
-      </div>
-      <br>
-   <p-card>
-    <p-table
-    [value]="lista"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    styleClass="p-datatable-striped p-datatable-sm"
-    [paginator]="true"
-    [rows]="10"
+  <div class="row">
+    <div
+      class="col-md-12 col-sm-12 d-flex justify-content-end align-items-center"
     >
-    <ng-template pTemplate="caption">
-      <div class="row">
+      <button class="btn btn-primary" (click)="showDialog()">
+        Agregar Nuevo Usuarios
+      </button>
+    </div>
+  </div>
+  <br />
+  <p-card>
+    <p-table
+      [value]="lista"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      styleClass="p-datatable-striped p-datatable-sm"
+      [paginator]="true"
+      [rows]="10"
+    >
+      <ng-template pTemplate="caption">
         <div class="row">
-          <div class="col-md-2"></div>
-          <div
-            class="col-md-10 col-sm-12 d-flex justify-content-end align-items-center"
-          >
-            <button class="btn btn-primary" (click)="exportExcel()" > <span class="d-none d-sm-block"> Descargar Excel</span>
-              <i class="bi bi-file-earmark-spreadsheet d-xs-none d-lg-none d-md-none d-sm-none"></i>
-           </button>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div
+              class="col-md-10 col-sm-12 d-flex justify-content-end align-items-center"
+            >
+              <button class="btn btn-primary" (click)="exportExcel()">
+                <span class="d-none d-sm-block"> Descargar Excel</span>
+                <i
+                  class="bi bi-file-earmark-spreadsheet d-xs-none d-lg-none d-md-none d-sm-none"
+                ></i>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </ng-template>
-    <ng-template pTemplate="header">
-      <tr>
-        <th pSortableColumn="Nombre">Nombre<p-sortIcon field="Nombre"></p-sortIcon></th>
-        <th pSortableColumn="Correo">Correo<p-sortIcon field="Correo"></p-sortIcon></th>
-        <th pSortableColumn="Edad">Edad <p-sortIcon field="Edad"></p-sortIcon></th>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="Nombre">
+            Nombre<p-sortIcon field="Nombre"></p-sortIcon>
+          </th>
+          <th pSortableColumn="Correo">
+            Correo<p-sortIcon field="Correo"></p-sortIcon>
+          </th>
+          <th pSortableColumn="Edad">
+            Edad <p-sortIcon field="Edad"></p-sortIcon>
+          </th>
 
-        <th pSortableColumn="programasuscrito">Programa Suscrito<p-sortIcon field="programasuscrito"></p-sortIcon></th>
-        <th pSortableColumn="kinesiologo">Kinesiólogo <p-sortIcon field="kinesiologo"></p-sortIcon></th>
-        <th pSortableColumn="estado">Estado <p-sortIcon field="estado"></p-sortIcon></th>
-    </ng-template>
-    <ng-template pTemplate="body" let-product>
-      <tr>
-        <td style="white-space: nowrap ">{{ product.Nombre }}</td>
-        <td style="white-space: nowrap">{{ product.Correo }}</td>
-        <td style="white-space: nowrap">{{ product.Edad }}</td>
-        <td style="white-space: nowrap">{{ product.programasuscrito }}</td>
-        <td style="white-space: nowrap">{{ product.kinesiologo }}</td>
-        <td style="white-space: nowrap">{{ product.estado }}</td>
-      </tr>
-    </ng-template>
+          <th pSortableColumn="programasuscrito">
+            Programa Suscrito<p-sortIcon field="programasuscrito"></p-sortIcon>
+          </th>
+          <th pSortableColumn="kinesiologo">
+            Kinesiólogo <p-sortIcon field="kinesiologo"></p-sortIcon>
+          </th>
+          <th pSortableColumn="estado">
+            Estado <p-sortIcon field="estado"></p-sortIcon>
+          </th></tr
+      ></ng-template>
+
+      <ng-template pTemplate="body" let-product>
+        <tr>
+          <td style="white-space: nowrap">{{ product.Nombre }}</td>
+          <td style="white-space: nowrap">{{ product.Correo }}</td>
+          <td style="white-space: nowrap">{{ product.Edad }}</td>
+          <td style="white-space: nowrap">{{ product.programasuscrito }}</td>
+          <td style="white-space: nowrap">{{ product.kinesiologo }}</td>
+          <td style="white-space: nowrap">{{ product.estado }}</td>
+        </tr>
+      </ng-template>
     </p-table>
-   </p-card>
+  </p-card>
 </div>
 <p-dialog
   [(visible)]="display"
@@ -63,9 +79,9 @@
   [closable]="true"
 >
   <form action="" [formGroup]="formulario">
-  <div class="container">
-    <br />
-    <!-- <form action=""> -->
+    <div class="container">
+      <br />
+      <!-- <form action=""> -->
       <div class="row">
         <div class="col-6">
           <span class="p-float-label">
@@ -75,9 +91,22 @@
               pInputText
               class="form-control"
               formControlName="name"
+              [ngClass]="{
+                'is-invalid':
+                  formulario.controls['name'].invalid &&
+                  formulario.controls['name'].dirty
+              }"
             />
             <label for="float-input">Nombre Cooperador</label>
           </span>
+          <p-message
+            severity="error"
+            [text]="formulario.controls['name'].errors?.['required'] ? 'Nombre es requerido'  :''"
+            *ngIf="
+              !formulario.controls['name'].valid &&
+              formulario.controls['name'].dirty
+            "
+          ></p-message>
         </div>
         <div class="col-6">
           <span class="p-float-label">
@@ -87,9 +116,22 @@
               pInputText
               class="form-control"
               formControlName="rut"
+              [ngClass]="{
+                'is-invalid':
+                  formulario.controls['rut'].invalid &&
+                  formulario.controls['rut'].dirty
+              }"
             />
             <label for="float-input">Ingrese el Rut</label>
           </span>
+          <p-message
+            severity="error"
+            [text]="formulario.controls['rut'].errors?.['required'] ? 'Rut es requerido' : formulario.controls['rut'].errors?.['RUT'] ? 'Debe ser un Rut Valido' :''"
+            *ngIf="
+              !formulario.controls['rut'].valid &&
+              formulario.controls['rut'].dirty
+            "
+          ></p-message>
         </div>
       </div>
       <br />
@@ -102,79 +144,236 @@
               pInputText
               class="form-control"
               formControlName="email"
+              [ngClass]="{
+                'is-invalid':
+                  formulario.controls['email'].invalid &&
+                  formulario.controls['email'].dirty
+              }"
             />
             <label for="float-input">Correo Electrónico</label>
           </span>
+          <p-message
+            severity="error"
+            [text]="formulario.controls['email'].errors?.['required'] ? 'Correo es requerido' : formulario.controls['email'].errors?.['email'] ? 'Debe ser un Correo Valido' :''"
+            *ngIf="
+              !formulario.controls['email'].valid &&
+              formulario.controls['email'].dirty
+            "
+          ></p-message>
         </div>
         <div class="col-6">
           <span class="p-float-label">
-            <p-dropdown inputId="dropdown" [autoDisplayFirst]="false" [options]="programas" formControlName="val" optionLabel="name" [style]="{width : '100%'}" optionValue="id" ></p-dropdown>
+            <p-dropdown
+              inputId="dropdown"
+              [autoDisplayFirst]="false"
+              [options]="programas"
+              formControlName="programa"
+              optionLabel="name"
+              [style]="{ width: '100%' }"
+              optionValue="id"
+              [ngClass]="{
+                'is-invalid':
+                  formulario.controls['programa'].invalid &&
+                  formulario.controls['programa'].dirty
+              }"
+            ></p-dropdown>
             <label for="dropdown">Programa suscrito</label>
-        </span>
+          </span>
+          <p-message
+            severity="error"
+            [text]="formulario.controls['programa'].errors?.['required'] ? 'Correo es requerido' : ''"
+            *ngIf="
+              !formulario.controls['programa'].valid &&
+              formulario.controls['programa'].dirty
+            "
+          ></p-message>
         </div>
       </div>
       <br />
       <div class="row">
         <div class="col-6">
           <span class="p-float-label">
-            <p-calendar inputId="calendar"  appendTo="body"  formControlName="val2"></p-calendar>
+            <p-calendar
+              inputId="calendar"
+              appendTo="body"
+              formControlName="fechanacimiento"
+            ></p-calendar>
             <label for="calendar">Fecha Nacimiento</label>
-        </span>
+          </span>
+          <p-message
+            severity="error"
+            [text]="formulario.controls['fechanacimiento'].errors?.['required'] ? 'Fecha de Nacimiento es requerido' : ''"
+            *ngIf="
+              !formulario.controls['fechanacimiento'].valid &&
+              formulario.controls['fechanacimiento'].dirty
+            "
+          ></p-message>
         </div>
         <div class="col-6">
           <span class="p-float-label">
-            <p-inputNumber  inputStyleClass="form-control" [max]="100" [min]="0" inputId="float-input" prefix="%"  formControlName="val2"></p-inputNumber>
+            <p-inputNumber
+              inputStyleClass="form-control"
+              [max]="100"
+              [min]="0"
+              inputId="float-input"
+              prefix="%"
+              formControlName="descuento"
+              [ngClass]="{
+                'is-invalid':
+                  formulario.controls['descuento'].invalid &&
+                  formulario.controls['descuento'].dirty
+              }"
+            ></p-inputNumber>
             <label for="float-input">Descuento</label>
           </span>
+          <p-message
+            severity="error"
+            [text]="formulario.controls['descuento'].errors?.['required'] ? 'Descuento es requerido' : ''"
+            *ngIf="
+              !formulario.controls['descuento'].valid &&
+              formulario.controls['descuento'].dirty
+            "
+          ></p-message>
         </div>
       </div>
-      <br>
+      <br />
       <div class="row">
-        <div class="col-12"> <p-inputSwitch [(ngModel)]="selectedValue1"  formControlName="val2"></p-inputSwitch> Kinesiólogo</div>
-        <div class="col-12"><p-inputSwitch [(ngModel)]="selectedValue2"  formControlName="val2"></p-inputSwitch> Hacer Cooperador</div>
+        <div class="col-12">
+          <p-inputSwitch
+            [(ngModel)]="selectedValue1"
+            formControlName="kine"
+          ></p-inputSwitch>
+          Kinesiólogo
+        </div>
+
+        <div class="col-12">
+          <p-inputSwitch
+            formControlName="Cooperador"
+            (onChange)="cambioestado()"
+          ></p-inputSwitch>
+          Hacer Cooperador
+        </div>
       </div>
-      <br>
-      <div class="row" *ngIf="selectedValue2">
+      <br />
+      <div class="row" *ngIf="formulario.controls['Cooperador'].value">
         <div class="col-6">
           <span class="p-float-label">
-            <input type="text" id="inputtext" class="form-control" pInputText  formControlName="val" pInputText >
+            <input
+              type="text"
+              id="inputtext"
+              class="form-control"
+              pInputText
+              formControlName="rol"
+              pInputText
+              [ngClass]="{
+                'is-invalid':
+                  formulario.controls['rol'].invalid &&
+                  formulario.controls['rol'].dirty
+              }"
+            />
             <label for="inputtext">Rol</label>
-        </span>
+          </span>
+          <p-message
+            severity="error"
+            [text]="formulario.controls['rol'].errors?.['required'] ? 'rol es requerido' : ''"
+            *ngIf="
+              !formulario.controls['rol'].valid &&
+              formulario.controls['rol'].dirty
+            "
+          ></p-message>
         </div>
         <div class="col-6">
           <span class="p-float-label">
-            <input type="text" id="inputtext" class="form-control" pInputText  formControlName="val2" pInputText >
+            <input
+              type="text"
+              id="inputtext"
+              class="form-control"
+              pInputText
+              formControlName="empresa"
+              pInputText
+              [ngClass]="{
+                'is-invalid':
+                  formulario.controls['empresa'].invalid &&
+                  formulario.controls['empresa'].dirty
+              }"
+            />
             <label for="inputtext">Empresa</label>
-        </span>
+          </span>
+          <p-message
+            severity="error"
+            [text]="formulario.controls['empresa'].errors?.['required'] ? 'Empresa es requerido' : ''"
+            *ngIf="
+              !formulario.controls['empresa'].valid &&
+              formulario.controls['empresa'].dirty
+            "
+          ></p-message>
         </div>
       </div>
-      <br>
-      <div class="row" *ngIf="selectedValue2">
+      <br />
+      <div class="row" *ngIf="formulario.controls['Cooperador'].value">
         <div class="col-6">
           <span class="p-float-label">
-            <input type="text" id="inputtext" class="form-control" pInputText  formControlName="val2" pInputText prefix="%" >
+            <p-inputNumber
+            inputStyleClass="form-control"
+            [max]="100"
+            [min]="0"
+            inputId="float-input"
+            prefix="%"
+            formControlName="descuento2"
+            [ngClass]="{
+              'is-invalid':
+                formulario.controls['descuento2'].invalid &&
+                formulario.controls['descuento2'].dirty
+            }"
+          ></p-inputNumber>
             <label for="inputtext">Descuento</label>
-        </span>
+          </span>
+          <p-message
+            severity="error"
+            [text]="formulario.controls['descuento2'].errors?.['required'] ? 'Descuento es requerido' : ''"
+            *ngIf="
+              !formulario.controls['descuento2'].valid &&
+              formulario.controls['descuento2'].dirty
+            "
+          ></p-message>
         </div>
         <div class="col-6">
           <span class="p-float-label">
-            <input type="text" id="inputtext" class="form-control" pInputText  formControlName="val2" pInputText >
+            <input
+              type="text"
+              id="inputtext"
+              class="form-control"
+              pInputText
+              formControlName="codigocooperador"
+              pInputText
+              [ngClass]="{
+                'is-invalid':
+                  formulario.controls['codigocooperador'].invalid &&
+                  formulario.controls['codigocooperador'].dirty
+              }"
+            />
             <label for="inputtext">Código Cooperador</label>
-        </span>
+          </span>
+          <p-message
+          severity="error"
+          [text]="formulario.controls['codigocooperador'].errors?.['required'] ? 'Codigo Cooperador es requerido' : ''"
+          *ngIf="
+            !formulario.controls['codigocooperador'].valid &&
+            formulario.controls['codigocooperador'].dirty
+          "
+        ></p-message>
         </div>
       </div>
-    <!-- </form> -->
-  </div>
- </form>
+      <!-- </form> -->
+    </div>
+  </form>
   <ng-template pTemplate="footer">
-    <div class="row ">
-      <div class="mx-auto" style="width: 200px;">
+    <div class="row">
+      <div class="mx-auto" style="width: 200px">
         <button (click)="guardarusuario()" class="btn btn-primary">
           <i class="bi bi-save"></i> Guardar
         </button>
       </div>
-
     </div>
-
   </ng-template>
 </p-dialog>

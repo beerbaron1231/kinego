@@ -6,23 +6,31 @@
                     col-12">
                     <h2 class="text-center">Bienvenido de nuevo</h2>
                     <svg _ngcontent-aup-c17="" width="100%" height="41" viewBox="0 0 212 41" fill="none" xmlns="http://www.w3.org/2000/svg"><g _ngcontent-aup-c17="" clip-path="url(#clip0_21_4453)"><path _ngcontent-aup-c17="" d="M89.1219 0H114.404V6.80969H95.9014V17.0242H111.579V23.8339H95.9014V34.0484H114.404V40.8581H89.1219V0Z" fill="#6749DD"></path><path _ngcontent-aup-c17="" d="M32.485 40.7163V0H25.7055V17.1661L9.60426 0H0.141239L19.3498 20.4291L0 40.8581H9.3924L25.7055 23.692V40.7163H32.485Z" fill="#6749DD"></path><path _ngcontent-aup-c17="" d="M45.1965 0H38.4171V40.8581H45.1965V0Z" fill="#6749DD"></path><path _ngcontent-aup-c17="" d="M51.1286 40.8581V0L76.5516 24.827V0H83.1899V41L83.1193 40.9291L57.9081 16.1021V40.8581H51.1286Z" fill="#6749DD"></path><path _ngcontent-aup-c17="" d="M153.24 5.98353C150.373 3.09346 146.712 1.13672 142.729 0.366255C138.747 -0.404207 134.627 0.0470344 130.902 1.66165C127.177 3.27626 124.018 5.98001 121.833 9.42338C119.649 12.8668 118.539 16.8914 118.648 20.9771C118.757 25.0628 120.079 29.0217 122.444 32.3421C124.808 35.6624 128.107 38.1914 131.912 39.6023C135.718 41.0132 139.856 41.2411 143.791 40.2564C147.727 39.2718 151.279 37.1199 153.988 34.079L148.922 29.4935C147.123 31.5128 144.765 32.9418 142.151 33.5957C139.538 34.2495 136.79 34.0982 134.263 33.1613C131.735 32.2244 129.545 30.5449 127.975 28.34C126.405 26.1351 125.527 23.5062 125.454 20.793C125.382 18.0799 126.119 15.4072 127.57 13.1206C129.02 10.834 131.118 9.03855 133.592 7.96634C136.066 6.89414 138.801 6.59449 141.446 7.10612C144.09 7.61776 146.522 8.91716 148.426 10.8363L153.24 5.98353Z" fill="#6749DD"></path><path _ngcontent-aup-c17="" d="M153.951 17.0242V34.0484L147.171 31.2111V23.8339H138.979V17.0242H153.951Z" fill="#6749DD"></path><path _ngcontent-aup-c17="" d="M188.554 14.6125C188.554 22.6827 182.073 29.2249 174.077 29.2249C166.082 29.2249 159.6 22.6827 159.6 14.6125C159.6 6.54222 166.082 0 174.077 0C182.073 0 188.554 6.54222 188.554 14.6125ZM166.652 14.6125C166.652 18.7519 169.976 22.1075 174.077 22.1075C178.178 22.1075 181.503 18.7519 181.503 14.6125C181.503 10.4731 178.178 7.1174 174.077 7.1174C169.976 7.1174 166.652 10.4731 166.652 14.6125Z" fill="#6749DD"></path><rect _ngcontent-aup-c17="" x="163.272" y="34.0484" width="21.8921" height="6.80969" fill="#6749DD"></rect><rect _ngcontent-aup-c17="" width="18.336" height="6.7945" transform="matrix(0.70322 0.710972 -0.707839 0.706374 199.013 7.51903)" fill="#6749DD"></rect><rect _ngcontent-aup-c17="" width="17.6522" height="6.79453" transform="matrix(0.703881 -0.710318 0.707182 0.707032 194.769 28.2861)" fill="#6749DD"></rect></g><defs _ngcontent-aup-c17=""><clipPath _ngcontent-aup-c17="" id="clip0_21_4453"><rect _ngcontent-aup-c17="" width="212" height="41" fill="white"></rect></clipPath></defs></svg>
+
                     <form [formGroup]="form">
                         <div class="form-group">
                             <label for="correo">Correo</label>
-                            <input 
-                                class="form-control" type="email"
-                                placeholder="Correo electrónico" formControlName="email">
+                            <input
+                            class="form-control  " type="email"
+                                placeholder="Correo electrónico" formControlName="email" [ngClass]="{ 'is-invalid': form.controls['email'].invalid && form.controls['email'].dirty }">
+
+                                <p-message severity="error" [text]="form.controls['email'].errors?.['required'] ? 'Correo es requerido' : form.controls['email'].errors?.['email'] ? 'Debe ser un Correo Valido' :''"
+                            *ngIf="!form.controls['email'].valid&&form.controls['email'].dirty"></p-message>
                         </div>
                         <div class="form-group">
                             <label for="palabraSecreta">Contraseña</label>
-                            <input 
-                                class="form-control" type="password"
-                                placeholder="Contraseña" formControlName="password">
+                            <input pInputText type="password" [ngClass]="{ 'is-invalid': form.controls['password'].invalid && form.controls['password'].dirty }" class="form-control " formControlName="password" placeholder="Required - Min(6)"/>
+
+                            <p-message severity="error" [text]="form.controls['password'].errors?.['required'] ? 'Password is required' : form.controls['password'].errors?.['minlength'] ? 'Debe tener mas de 6 caracteres' : ''"
+                            *ngIf="!form.controls['password'].valid&&form.controls['password'].dirty"></p-message>
                         </div>
-                        <button type="submit" class="btn btn-primary mb-2" (click)="login()">
-                            Entrar
-                        </button>
+
                         <br>
+                        <div class="row">
+                          <button  type="submit" class="btn btn-primary mb-2" (click)="login()" [disabled]="form.invalid">
+                              Entrar
+                          </button>
+                        </div>
                         <a href="#">Contraseña olvidada</a>
                     </form>
                 </div>

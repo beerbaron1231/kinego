@@ -12,6 +12,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './component/login/login.component';
 import { AuthServiceService } from './services/auth-service.service';
 
+import {ToastModule} from 'primeng/toast';
+import {MessageModule} from 'primeng/message';
 @NgModule({
   declarations: [
     AppComponent,SidebarComponent, LoginComponent
@@ -24,7 +26,9 @@ import { AuthServiceService } from './services/auth-service.service';
     FormsModule,
     MenuModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MessageModule,
+    ToastModule
   ],
   providers: [MyGuardWithDependency, AuthServiceService, ],
   bootstrap: [AppComponent]
